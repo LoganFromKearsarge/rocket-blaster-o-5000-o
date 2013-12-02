@@ -1,7 +1,7 @@
-import pygame, sys, os, math
+import pygame, sys, math
 
-class Shot(self, image, size = (50,20), pos = (0,0)):
-    def __init__():
+class Shot():
+    def __init__(self, image, size = [50,20], pos = (0,0)):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.maxSpeedy = [0]
@@ -26,3 +26,4 @@ class Shot(self, image, size = (50,20), pos = (0,0)):
                     self.living = False
                     other.living = False
                     
+    

@@ -6,7 +6,7 @@ height = 480
 size = (width,height)
 
 class Score():
-    def init(self, value=0, pos = (width/2, height/2)):
+    def __init__(self, value=0, pos = (100, -height/8)):
         self.image = font.render(str(value), 1, (100,200,50))
         self.rect = self.image.get_rect()
         self.value = value
@@ -20,4 +20,3 @@ class Score():
     
     def update():
         self.image = font.render(str(self.value), 1, (100,200,50))
-       

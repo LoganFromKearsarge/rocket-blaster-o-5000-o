@@ -1,4 +1,4 @@
-import pygame, sys, os, math
+import pygame, sys, math
 
 class Player():
     def __init__(self, image, speed = [2,2], size = [100,100], pos = (0,0)):
@@ -27,7 +27,6 @@ class Player():
     
     def update(self):
         self.move()
-        self.animate()
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
@@ -40,17 +39,17 @@ class Player():
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                 if self.radius + other.radius > self.distanceToPoint(other.rect.center):
                     other.living = False
-                    if self.rect.center[0] < other.rect.center[0]: #self left of other
-                        if other.speedx < 0: #moving left
+                    if self.rect.center[0] < other.rect.center[0]:
+                        if other.speedx < 0:
                             self.living = False
-                    if self.rect.center[0] > other.rect.center[0]: #self right of other
-                        if other.speedx > 0: #moving right
+                    if self.rect.center[0] > other.rect.center[0]:
+                        if other.speedx > 0:
                             self.living = False
-                    if self.rect.center[1] < other.rect.center[1]: #self above other
-                        if other.speedy < 0: #moving up
+                    if self.rect.center[1] < other.rect.center[1]:
+                        if other.speedy < 0:
                             self.living = False
-                    if self.rect.center[1] > other.rect.center[1]:#self below other
-                        if other.speedy > 0: #moving down
+                    if self.rect.center[1] > other.rect.center[1]:
+                        if other.speedy > 0:
                             self.living = False
     
     def distanceToPoint(self, pt):
