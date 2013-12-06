@@ -2,8 +2,8 @@ import pygame, sys, math, random, time
 from pygame.locals import *
 from Player import Player
 from Shot import Shot
-from Score import Score
 from Alien import Alien
+from Score import Score
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
 
