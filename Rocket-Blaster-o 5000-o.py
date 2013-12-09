@@ -21,22 +21,22 @@ bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
 bgRect = bgImage.get_rect()
 
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
-shot = Shot("Resources/Shot/Rocket.png")
+shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
 score = Score()
 start = False
 while True:
     while not start:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN:
-                        start = True
-                        bgImage = pygame.image.load("Resources/Background/Background.png")
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    start = True
+                    bgImage = pygame.image.load("Resources/Background/Background.png")
 
-            screen.blit(bgImage, bgRect)
-            pygame.display.flip()
-            clock.tick(60)
+        screen.blit(bgImage, bgRect)
+        pygame.display.flip()
+        clock.tick(60)
 
     st = time.time()
     while start:
@@ -55,11 +55,11 @@ while True:
                 if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
     
-        if player.living = False:
+        if player.living == False:
             bgImage = pygame.image.load("Resources/End_Screen/EndScreen.png")
             
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN
+                if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
                     bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
                     
                 if event.key == pygame.K_Q or event.ket == pygame.K_ESCAPE:
@@ -81,3 +81,12 @@ while True:
         screen.blit(text, textpos)
         pyame.display.flip()
         clk.tick(60)
+        
+def doge():
+    print "much game"
+    print "very rocket"
+    print "wow"
+    
+    
+doge()
+    
