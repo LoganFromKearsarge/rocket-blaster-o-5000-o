@@ -55,11 +55,11 @@ while True:
                 if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
     
-        if player.living = False:
+        if player.living == False:
             bgImage = pygame.image.load("Resources/End_Screen/EndScreen.png")
             
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN
+                if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
                     bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
                     
                 if event.key == pygame.K_Q or event.ket == pygame.K_ESCAPE:

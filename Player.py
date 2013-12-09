@@ -12,6 +12,7 @@ class Player():
         self.radius = self.rect.width/2
         self.place(pos)
         
+        
     def place(self, pos):
         self.rect.center = pos
         
