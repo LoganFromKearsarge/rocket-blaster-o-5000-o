@@ -13,8 +13,8 @@ class Alien():
         self.place(pos)
         
     def place(self, pos):
-        
         self.rect.center = pos
+        
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)

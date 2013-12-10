@@ -2,6 +2,10 @@ import pygame, sys, math
 width = 900
 height = 480
 
+width = 900
+height = 480
+size = width, height
+
 class Player():
     def __init__(self, image, speed = [2,2], size = [100,40], pos = (0,0)):
         self.image = pygame.image.load(image)
