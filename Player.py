@@ -33,6 +33,7 @@ class Player():
     
     def update(self):
         self.move()
+        
     
     def move(self):
         self.speed = [self.speedx, self.speedy]
@@ -44,7 +45,6 @@ class Player():
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                 if self.radius + other.radius > self.distanceToPoint(other.rect.center):
-                    other.living = False
                     if self.rect.center[0] < other.rect.center[0]:
                         if other.speedx < 0:
                             self.living = False
