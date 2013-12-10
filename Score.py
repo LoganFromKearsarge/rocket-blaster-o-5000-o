@@ -4,6 +4,7 @@ if not pygame.font: print 'Warning, fonts disabled'
 width = 900
 height = 480
 size = (width,height)
+font = (None, 36)
 
 class Score():
     def __init__(self, value=0, pos = (100, -height/8)):
