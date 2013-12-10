@@ -1,4 +1,6 @@
 import pygame, sys, math
+width = 900
+height = 480
 
 class Player():
     def __init__(self, image, speed = [2,2], size = [100,40], pos = (0,0)):
@@ -11,6 +13,7 @@ class Player():
         self.speed = [self.speedx, self.speedy]
         self.radius = self.rect.width/2
         self.place(pos)
+        self.living = True
         
         
     def place(self, pos):

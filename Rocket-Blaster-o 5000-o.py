@@ -22,7 +22,8 @@ bgRect = bgImage.get_rect()
 
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
 shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
-score = Score()
+alien = Alien("Resources/Alien/Mob1.png", (-5,5), (100,40), (width, height/2))
+#score = Score()
 start = False
 while True:
     while not start:
@@ -75,11 +76,12 @@ while True:
         score.increase()
         
         screen.fill(bgColor)
+        screen.fill(alien.image, alien.rect)
         screen.blit(score.image, score.rect)
         screen.blit(bgImage, bgRect)
         screen.blit(player.image, player.rect)
         screen.blit(text, textpos)
-        pyame.display.flip()
+        pygame.display.flip()
         clk.tick(60)
         
 def doge():
