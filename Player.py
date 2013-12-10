@@ -1,7 +1,7 @@
 import pygame, sys, math
 
 class Player():
-    def __init__(self, image, speed = [2,2], size = [100,100], pos = (0,0)):
+    def __init__(self, image, speed = [2,2], size = [100,40], pos = (0,0)):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.maxSpeedx = speed[0]
