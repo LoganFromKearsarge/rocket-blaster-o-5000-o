@@ -1,8 +1,8 @@
 import pygame, sys, math, random, time
 from pygame.locals import *
 from Player import Player
-from Shot import Shot
-from Score import Score
+#from Shot import Shot
+#from Score import Score
 from Alien import Alien
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
@@ -20,9 +20,10 @@ bgColor = r,g,b = 0,0,0
 bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
 bgRect = bgImage.get_rect()
 
+alien = Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, height/2))
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
-shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
-score = Score()
+#shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
+#score = Score()
 start = False
 while True:
     while not start:
@@ -66,21 +67,21 @@ while True:
                     quit()
         
         player.update()
-        shot.update()
+        #shot.update()
         alien.update()
-        score.update()
+        #score.update()
         
         pygame.time.get_ticks()
         timeSinceStart = time.time()-st
-        score.increase()
+        #score.increase()
         
         screen.fill(bgColor)
-        screen.blit(score.image, score.rect)
+        #screen.blit(score.image, score.rect)
         screen.blit(bgImage, bgRect)
         screen.blit(player.image, player.rect)
-        screen.blit(text, textpos)
-        pyame.display.flip()
-        clk.tick(60)
+        #screen.blit(text, textpos)
+        pygame.display.flip()
+        clock.tick(60)
         
 def doge():
     print "much game"
