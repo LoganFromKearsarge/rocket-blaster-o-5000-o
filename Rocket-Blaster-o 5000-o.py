@@ -76,7 +76,7 @@ while True:
         #score.increase()
         
         screen.fill(bgColor)
-        screen.fill(alien.image, alien.rect)
+        screen.blit(alien.image, alien.rect)
         screen.blit(bgImage, bgRect)
         screen.blit(player.image, player.rect)
         #screen.blit(score.image, score.rect)
