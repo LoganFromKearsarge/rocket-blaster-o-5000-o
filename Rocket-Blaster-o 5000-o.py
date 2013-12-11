@@ -22,7 +22,7 @@ bgRect = bgImage.get_rect()
 
 alien = Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, height/2))
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
-shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
+#shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
 #score = Score()
 start = False
 while True:
@@ -67,8 +67,8 @@ while True:
                     quit()
         
         player.update()
-        #shot.update()
         alien.update()
+        #shot.update()
         #score.update()
         
         pygame.time.get_ticks()
@@ -76,12 +76,11 @@ while True:
         #score.increase()
         
         screen.fill(bgColor)
-        #screen.blit(score.image, score.rect)
-        screen.blit(alien.image, alien.rect)
         screen.fill(alien.image, alien.rect)
-        screen.blit(score.image, score.rect)
         screen.blit(bgImage, bgRect)
         screen.blit(player.image, player.rect)
+        #screen.blit(score.image, score.rect)
+        #screen.blit(score.image, score.rect)
         #screen.blit(text, textpos)
         pygame.display.flip()
         clock.tick(60)
