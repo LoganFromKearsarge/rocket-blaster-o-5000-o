@@ -77,6 +77,7 @@ while True:
         
         screen.fill(bgColor)
         #screen.blit(score.image, score.rect)
+        screen.blit(alien.image, alien.rect)
         screen.blit(bgImage, bgRect)
         screen.blit(player.image, player.rect)
         #screen.blit(text, textpos)
