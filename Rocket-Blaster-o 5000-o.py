@@ -7,6 +7,8 @@ from Alien import Alien
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
 
+12
+
 width = 900
 height = 480
 size = width, height
@@ -20,10 +22,12 @@ bgColor = r,g,b = 0,0,0
 bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
 bgRect = bgImage.get_rect()
 
-alien = Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, height/2))
+
+aliens = []
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
 #shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
 #score = Score()
+
 start = False
 while True:
     while not start:
@@ -42,6 +46,8 @@ while True:
     st = time.time()
     while start:
         for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.direction("up")
@@ -66,18 +72,32 @@ while True:
                 if event.key == pygame.K_Q or event.ket == pygame.K_ESCAPE:
                     quit()
         
+        if len(aliens) < 12:
+            if random.randint(0, 10) == 0:
+                aliens += [Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
+            
+        print len(aliens)
         player.update()
-        alien.update()
+        for alien in aliens:
+            alien.update()
         #shot.update()
         #score.update()
+        
+        for alien in aliens:
+            alien.collideWall(width, height)
         
         pygame.time.get_ticks()
         timeSinceStart = time.time()-st
         #score.increase()
         
+        for alien in aliens:
+            if not alien.living:
+                aliens.remove(alien)
+        
         screen.fill(bgColor)
-        screen.blit(alien.image, alien.rect)
         screen.blit(bgImage, bgRect)
+        for alien in aliens:
+            screen.blit(alien.image, alien.rect)
         screen.blit(player.image, player.rect)
         #screen.blit(score.image, score.rect)
         #screen.blit(score.image, score.rect)
