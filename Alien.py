@@ -6,11 +6,12 @@ class Alien():
         self.rect = self.image.get_rect()
         self.maxSpeedx = speed[0]
         self.maxSpeedy = speed[1]
-        self.speedx = 0
-        self.speedy = 0
+        self.speedx = self.maxSpeedx
+        self.speedy = self.maxSpeedy
         self.speed = [self.speedx, self.speedy]
         self.radius = self.rect.width/2
         self.place(pos)
+        self.living = True
         
     def place(self, pos):
         self.rect.center = pos
@@ -18,6 +19,11 @@ class Alien():
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
+        
+    def collideWall(self, width, height):
+        if self.rect.right < 0:
+            self.living = False
+            print "died"
         
     def collideAlien(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
@@ -38,6 +44,7 @@ class Alien():
                             self.living = False
     def update(self):
         self.move()
+    
     
         
 
