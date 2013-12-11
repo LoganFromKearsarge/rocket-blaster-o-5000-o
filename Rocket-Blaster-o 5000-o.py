@@ -1,8 +1,8 @@
 import pygame, sys, math, random, time
 from pygame.locals import *
 from Player import Player
-#from Shot import Shot
-#from Score import Score
+from Shot import Shot
+from Score import Score
 from Alien import Alien
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
@@ -23,8 +23,7 @@ bgRect = bgImage.get_rect()
 alien = Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, height/2))
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
 shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
-alien = Alien("Resources/Alien/Mob1.png", (-5,5), (100,40), (width, height/2))
-#score = Score()
+score = Score()
 start = False
 while True:
     while not start:
@@ -50,12 +49,24 @@ while True:
                 if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("down")
             
+                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                    player.direction("right")
+                    
+                if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                    player.direction("left")
+            
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.direction("stop up")
                     
                 if event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     player.direction("stop down")
+                    
+                if event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+                    player.direction("stop right")
+                    
+                if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+                    player.direction("stop left")
     
         if player.living == False:
             bgImage = pygame.image.load("Resources/End_Screen/EndScreen.png")
@@ -68,28 +79,21 @@ while True:
                     quit()
         
         player.update()
-        #shot.update()
+        shot.update()
         alien.update()
-        #score.update()
+        score.update()
         
         pygame.time.get_ticks()
         timeSinceStart = time.time()-st
-        #score.increase()
+        score.increase(value)
         
         screen.fill(bgColor)
-        screen.fill(alien.image, alien.rect)
+        screen.blit(alien.image, alien.rect)
         screen.blit(score.image, score.rect)
         screen.blit(bgImage, bgRect)
         screen.blit(player.image, player.rect)
         screen.blit(text, textpos)
         pygame.display.flip()
-        clk.tick(60)
-        
-def doge():
-    print "much game"
-    print "very rocket"
-    print "wow"
-    
-    
-doge()
+        clock.tick(60)
+
     

@@ -1,4 +1,4 @@
-import pygame, sys, math
+import pygame, sys, math, time
 width = 900
 height = 480
 
@@ -12,8 +12,8 @@ class Player():
         self.rect = self.image.get_rect()
         self.maxSpeedx = speed[0]
         self.maxSpeedy = speed[1]
-        self.speedx = 0
-        self.speedy = 0
+        self.speedx = self.maxSpeedx
+        self.speedy = self.maxSpeedy
         self.speed = [self.speedx, self.speedy]
         self.radius = self.rect.width/2
         self.place(pos)
@@ -32,6 +32,14 @@ class Player():
             self.speedy = self.maxSpeedy
         if dir == "stop down":
             self.speedy = 0
+        if dir == "right":
+            self.speedx = self.maxSpeedx
+        if dir == "stop right":
+            self.speedx = 0
+        if dir == "left":
+            self.speedx = -self.maxSpeedx
+        if dir == "stop left":
+            self.speedx = 0
     
     def update(self):
         self.move()
@@ -59,6 +67,16 @@ class Player():
                     if self.rect.center[1] > other.rect.center[1]:
                         if other.speedy > 0:
                             self.living = False
+    
+    def collideWall():
+        if self.rect.right > width:
+            self.living = False
+        if self.rect.left < 0:
+            self.living = False
+        if self.rect.top > 0:
+            self.living = False
+        if self.rect.bottm > height:
+            self.living = False
     
     def distanceToPoint(self, pt):
         x1 = self.rect.center[0]

@@ -15,6 +15,9 @@ class Shot():
     def place(self, pos):
         self.rect.center = pos
         
+    def update():
+        self.move()
+        
     def direction(self, dir):
         if dir == "right":
             self.speedx = self.maxSpeedx
