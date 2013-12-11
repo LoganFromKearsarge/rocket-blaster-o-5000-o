@@ -1,4 +1,6 @@
 import pygame, sys, math
+width = 900
+height = 480
 
 width = 900
 height = 480
