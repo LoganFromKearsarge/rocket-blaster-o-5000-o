@@ -23,7 +23,7 @@ class Alien():
     def collideWall(self, width, height):
         if self.rect.right < 0:
             self.living = False
-            print "died"
+            
         
     def collideAlien(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
@@ -44,6 +44,14 @@ class Alien():
                             self.living = False
     def update(self):
         self.move()
+    
+    def distanceToPoint(self, pt):
+        x1 = self.rect.center[0]
+        y1 = self.rect.center[1]
+        x2 = pt[0]
+        y2 = pt[1]
+    
+        return math.sqrt(((x2-x1)**2)+((y2-y1)**2))
     
     
         

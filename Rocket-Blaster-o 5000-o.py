@@ -27,6 +27,8 @@ player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
 #score = Score()
 start = False
 while True:
+    bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
+    
     while not start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -34,14 +36,16 @@ while True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     start = True
-                    bgImage = pygame.image.load("Resources/Background/Background.png")
+                    
 
         screen.blit(bgImage, bgRect)
         pygame.display.flip()
         clock.tick(60)
 
     st = time.time()
-    while start:
+    bgImage = pygame.image.load("Resources/Background/Background.png")
+    
+    while start and player.living:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -69,20 +73,7 @@ while True:
                     player.direction("stop right")
                     
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
-                    player.direction("stop left")
-    
-        if player.living == False:
-            bgImage = pygame.image.load("Resources/End_Screen/EndScreen.png")
-            alien.living == False
-            
-            
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                    bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")    
-                if event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
-                    sys.exit()
-                
-                    
+                    player.direction("stop left")             
                     
         
         if len(aliens) < 12:
@@ -118,3 +109,22 @@ while True:
         #screen.blit(text, textpos)
         pygame.display.flip()
         clock.tick(60)
+    
+    bgImage = pygame.image.load("Resources/End_Screen/EndScreen.png")    
+    
+    while start and not player.living:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.key == pygame.K_RETURN:
+                start = False
+                aliens = []
+                player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
+                
+        
+        screen.blit(bgImage, bgRect)
+        pygame.display.flip()
+        clock.tick(60)
+    
+            
+            
