@@ -1,8 +1,8 @@
 import pygame, sys, math, random, time
 from pygame.locals import *
 from Player import Player
-from Shot import Shot
-from Score import Score
+#from Shot import Shot
+#from Score import Score
 from Alien import Alien
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
@@ -23,8 +23,8 @@ bgRect = bgImage.get_rect()
 
 aliens = []
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
-shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
-score = Score()
+#shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
+#score = Score()
 start = False
 while True:
     while not start:
@@ -87,6 +87,7 @@ while True:
             
         print len(aliens)
         player.update()
+        player.collide()
         for alien in aliens:
             alien.update()
         #shot.update()
@@ -97,7 +98,7 @@ while True:
         
         pygame.time.get_ticks()
         timeSinceStart = time.time()-st
-        score.increase(value)
+        #score.increase(value)
         
         for alien in aliens:
             if not alien.living:
