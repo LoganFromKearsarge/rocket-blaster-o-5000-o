@@ -12,8 +12,8 @@ class Player():
         self.rect = self.image.get_rect()
         self.maxSpeedx = speed[0]
         self.maxSpeedy = speed[1]
-        self.speedx = self.maxSpeedx
-        self.speedy = self.maxSpeedy
+        self.speedx = 0
+        self.speedy = 0 
         self.speed = [self.speedx, self.speedy]
         self.radius = self.rect.width/2
         self.place(pos)
