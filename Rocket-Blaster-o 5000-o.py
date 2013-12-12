@@ -85,9 +85,8 @@ while True:
             if random.randint(0, 10) == 0:
                 aliens += [Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
             
-        print len(aliens)
+        
         player.update()
-        player.collide()
         for alien in aliens:
             alien.update()
         #shot.update()
@@ -95,6 +94,7 @@ while True:
         
         for alien in aliens:
             alien.collideWall(width, height)
+            alien.collideAlien(player)
         
         pygame.time.get_ticks()
         timeSinceStart = time.time()-st
