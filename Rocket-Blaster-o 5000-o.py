@@ -73,22 +73,24 @@ while True:
     
         if player.living == False:
             bgImage = pygame.image.load("Resources/End_Screen/EndScreen.png")
+            alien.living == False
+            
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE or event.key == pygame.K_RETURN:
-                    bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
+                    bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")    
+                if event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
+                    sys.exit()
+                
                     
-                if event.key == pygame.K_Q or event.ket == pygame.K_ESCAPE:
-                    quit()
+                    
         
         if len(aliens) < 12:
             if random.randint(0, 10) == 0:
                 aliens += [Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
             
         
-        player.update()
         player.update()        
-        print len(aliens)
         for alien in aliens:
             alien.update()
         #shot.update()
