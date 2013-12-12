@@ -84,9 +84,15 @@ while True:
         if len(aliens) < 12:
             if random.randint(0, 10) == 0:
                 aliens += [Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
+<<<<<<< Updated upstream
             
         
         player.update()
+=======
+        
+        player.update()        
+        print len(aliens)
+>>>>>>> Stashed changes
         for alien in aliens:
             alien.update()
         #shot.update()
