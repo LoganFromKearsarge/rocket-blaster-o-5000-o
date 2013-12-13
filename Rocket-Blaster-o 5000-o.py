@@ -116,10 +116,14 @@ while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            if event.key == pygame.K_RETURN:
-                start = False
-                aliens = []
-                player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
+                    sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
+                    start = False
+                    aliens = []
+                    player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
                 
         
         screen.blit(bgImage, bgRect)
