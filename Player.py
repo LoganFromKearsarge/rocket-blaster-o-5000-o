@@ -73,7 +73,7 @@ class Player():
             self.living = False
         if self.rect.left < 0:
             self.living = False
-        if self.rect.top > 0:
+        if self.rect.top < 0:
             self.living = False
         if self.rect.bottm > height:
             self.living = False

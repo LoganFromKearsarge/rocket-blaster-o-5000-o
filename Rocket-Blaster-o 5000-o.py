@@ -81,7 +81,7 @@ while True:
                 aliens += [Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
             
         
-        player.update()        
+        player.update()
         for alien in aliens:
             alien.update()
         #shot.update()
