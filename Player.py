@@ -70,13 +70,13 @@ class Player():
     
     def collideWall():
         if self.rect.right > width:
-            self.living = False
+            self.speedx = 0
         if self.rect.left < 0:
-            self.living = False
-        if self.rect.top < 0:
-            self.living = False
-        if self.rect.bottm > height:
-            self.living = False
+            self.speedx = 0
+        if self.rect.top > 0:
+            self.speedy = 0
+        if self.rect.bottom < height:
+            self.speedy = 0
     
     def distanceToPoint(self, pt):
         x1 = self.rect.center[0]
