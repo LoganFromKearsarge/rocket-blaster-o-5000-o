@@ -21,6 +21,7 @@ bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
 bgRect = bgImage.get_rect()
 
 
+
 aliens = []
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
 #shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
@@ -78,7 +79,9 @@ while True:
         
         if len(aliens) < 12:
             if random.randint(0, 10) == 0:
-                aliens += [Alien("Resources/Alien/mob1.png", (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
+                skin = ["Resources/Alien/mob1.png","Resources/Alien/mob2.png","Resources/Alien/mob3.png"] 
+                alienSkin = skin[random.randint(0,2)]
+                aliens += [Alien(alienSkin, (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
             
         
         player.update()
