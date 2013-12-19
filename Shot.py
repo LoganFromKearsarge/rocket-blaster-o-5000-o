@@ -2,7 +2,7 @@ import pygame, sys, math
 
 class Shot():
     def __init__(self, image, size = [50,20], pos = (0,0)):
-        self.image = pygame.image.load(image)
+        self.image = pygame.image.load("Resources/Shot/Rocket.png")
         self.rect = self.image.get_rect()
         self.maxSpeedy = [0]
         self.maxSpeedx = [1]

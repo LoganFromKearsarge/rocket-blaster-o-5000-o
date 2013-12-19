@@ -1,7 +1,7 @@
 import pygame, sys, math, random, time
 from pygame.locals import *
 from Player import Player
-#from Shot import Shot
+from Shot import Shot
 #from Score import Score
 from Alien import Alien
 if not pygame.font: print 'Warning, fonts disabled'
@@ -23,8 +23,9 @@ bgRect = bgImage.get_rect()
 
 
 aliens = []
+shots = []
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
-#shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
+shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
 #score = Score()
 start = False
 while True:
@@ -62,7 +63,8 @@ while True:
                     
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("left")
-            
+                if event.key == pygame.K_SPACE:
+                    shots += [Shot(player.rect.center)]
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.direction("stop up")
@@ -95,7 +97,6 @@ while True:
             player.rect.bottom = height
         for alien in aliens:
             alien.update()
-        #shot.update()
         #score.update()
         
         for alien in aliens:
