@@ -68,15 +68,15 @@ class Player():
                         if other.speedy > 0:
                             self.living = False
     
-    def collideWall():
-        if self.rect.right > width:
-            self.speedx = 0
+    def collideWall(self,width,height):
         if self.rect.left < 0:
-            self.speedx = 0
-        if self.rect.top > 0:
-            self.speedy = 0
-        if self.rect.bottom < height:
-            self.speedy = 0
+            self.rect.left = 0
+        if self.rect.right > width:
+            self.rect.right = width
+        if self.rect.top < 0:
+            self.rect.top = 0
+        if self.rect.bottom > height:
+            self.rect.bottom = height
     
     def distanceToPoint(self, pt):
         x1 = self.rect.center[0]

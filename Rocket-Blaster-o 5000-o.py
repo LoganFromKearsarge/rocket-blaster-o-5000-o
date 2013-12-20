@@ -87,14 +87,7 @@ while True:
             
         
         player.update()
-        if player.rect.left < 0:
-            player.rect.left = 0
-        if player.rect.right > width:
-            player.rect.right = width
-        if player.rect.top < 0:
-            player.rect.top = 0
-        if player.rect.bottom > height:
-            player.rect.bottom = height
+        player.collideWall(width, height)
         
         for alien in aliens:
             alien.update()
