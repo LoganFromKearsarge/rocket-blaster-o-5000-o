@@ -25,7 +25,7 @@ bgRect = bgImage.get_rect()
 aliens = []
 shots = []
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
-shot = Shot("Resources/Shot/Rocket.png", (50,20), (0,0))
+
 #score = Score()
 start = False
 while True:
@@ -36,7 +36,7 @@ while True:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN:
+                if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
                     start = True
                     
 
@@ -95,13 +95,18 @@ while True:
             player.rect.top = 0
         if player.rect.bottom > height:
             player.rect.bottom = height
+        
         for alien in aliens:
             alien.update()
+        for shot in shots:
+            shot.update()
         #score.update()
         
         for alien in aliens:
             alien.collideWall(width, height)
             alien.collideAlien(player)
+            for shot in shots:
+                shot.collide(alien)
         
         pygame.time.get_ticks()
         timeSinceStart = time.time()-st
@@ -110,9 +115,15 @@ while True:
         for alien in aliens:
             if not alien.living:
                 aliens.remove(alien)
+                
+        for shot in shots:
+            if not shot.living:
+                shots.remove(shot)
         
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
+        for shot in shots:
+            screen.blit(shot.image, shot.rect)
         for alien in aliens:
             screen.blit(alien.image, alien.rect)
         screen.blit(player.image, player.rect)
@@ -135,6 +146,7 @@ while True:
                 if event.key == pygame.K_RETURN or event.key == pygame.K_SPACE:
                     start = False
                     aliens = []
+                    shots = []
                     player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
                 
         
