@@ -121,7 +121,6 @@ while True:
             screen.blit(alien.image, alien.rect)
         screen.blit(player.image, player.rect)
         #screen.blit(score.image, score.rect)
-        #screen.blit(score.image, score.rect)
         #screen.blit(text, textpos)
         pygame.display.flip()
         clock.tick(60)
