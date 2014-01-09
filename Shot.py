@@ -1,10 +1,13 @@
 import pygame, sys, math
+width = 900
+height = 480
+size = width,height
 
 class Shot():
     def __init__(self, pos = (0,0)):
         self.image = pygame.image.load("Resources/Shot/Rocket.png")
         self.rect = self.image.get_rect()
-        self.speedx = 10
+        self.speedx = 7
         self.speedy = 0
         self.speed = [self.speedx, self.speedy]
         self.radius = self.rect.width/2
@@ -27,6 +30,17 @@ class Shot():
                 if self.radius + other.radius > self.distanceToPoint(other.rect.center):
                     self.living = False
                     other.living = False
+                    
+    def collideWall(self, width, height):
+        if self.rect.left < 0:
+            self.living = False
+        if self.rect.right > width:
+            self.living = False
+        if self.rect.top < 0:
+            self.living = False
+        if self.rect.bottom > height:
+            self.living = False
+        
                  
     def distanceToPoint(self, pt):
         x1 = self.rect.center[0]

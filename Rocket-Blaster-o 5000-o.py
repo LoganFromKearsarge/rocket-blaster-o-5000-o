@@ -2,7 +2,7 @@ import pygame, sys, math, random, time
 from pygame.locals import *
 from Player import Player
 from Shot import Shot
-#from Score import Score
+from Score import Score
 from Alien import Alien
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
@@ -26,7 +26,7 @@ aliens = []
 shots = []
 player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
 
-#score = Score()
+score = Score()
 start = False
 while True:
     bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
@@ -64,7 +64,9 @@ while True:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("left")
                 if event.key == pygame.K_SPACE:
-                    shots += [Shot(player.rect.center)]
+                    if len(shots) < 2:
+                        shots += [Shot(player.rect.center)]
+                    
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.direction("stop up")
@@ -93,7 +95,8 @@ while True:
             alien.update()
         for shot in shots:
             shot.update()
-        #score.update()
+            shot.collideWall(width, height)
+        
         
         for alien in aliens:
             alien.collideWall(width, height)
@@ -101,9 +104,11 @@ while True:
             for shot in shots:
                 shot.collide(alien)
         
+        
         pygame.time.get_ticks()
         timeSinceStart = time.time()-st
-        #score.increase(value)
+        score.increase(1)
+        score.update()
         
         for alien in aliens:
             if not alien.living:
@@ -120,8 +125,7 @@ while True:
         for alien in aliens:
             screen.blit(alien.image, alien.rect)
         screen.blit(player.image, player.rect)
-        #screen.blit(score.image, score.rect)
-        #screen.blit(text, textpos)
+        screen.blit(score.image, score.rect)
         pygame.display.flip()
         clock.tick(60)
     
@@ -140,7 +144,7 @@ while True:
                     aliens = []
                     shots = []
                     player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
-                
+        score.reset()        
         
         screen.blit(bgImage, bgRect)
         pygame.display.flip()
