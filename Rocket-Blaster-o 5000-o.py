@@ -83,7 +83,9 @@ while True:
         
         if len(aliens) < 12:
             if random.randint(0, 10) == 0:
-                skin = ["Resources/Alien/mob1.png","Resources/Alien/mob2.png","Resources/Alien/mob3.png"] 
+                skin = [["Resources/Alien/mob1.png"],
+                        ["Resources/Alien/mob2.png"],
+                        ["Resources/Alien/mob3.png", "Resources/Alien/mob3-2.png", "Resources/Alien/mob3-3.png", "Resources/Alien/mob3-4.png"]] 
                 alienSkin = skin[random.randint(0,2)]
                 aliens += [Alien(alienSkin, (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
             

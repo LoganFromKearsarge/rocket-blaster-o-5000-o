@@ -1,8 +1,13 @@
 import pygame, sys, math, random, time
 
 class Alien():
-    def __init__(self, image, speed = [-2,0], size = [100,40], pos = (0,0)):
-        self.image = pygame.image.load(image)
+    def __init__(self, images, speed = [-2,0], size = [100,40], pos = (0,0)):
+        self.images = []
+        for image in images:
+            newimage = pygame.image.load(image)
+            self.images += [newimage]
+        self.frame = 0
+        self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
         self.maxSpeedx = speed[0]
         self.maxSpeedy = speed[1]
@@ -11,6 +16,8 @@ class Alien():
         self.speed = [self.speedx, self.speedy]
         self.radius = self.rect.width/2
         self.place(pos)
+        self.waitCount = 0
+        self.waitMax = 30
         self.living = True
         
     def place(self, pos):
@@ -42,8 +49,20 @@ class Alien():
                     if self.rect.center[1] > other.rect.center[1]:
                         if other.speedy > 0:
                             self.living = False
+    def animate(self):
+        if self.waitCount < self.waitMax:
+            self.waitCount +=3
+        else:
+            self.waitCount = 0
+            if self.frame < len(self.images) - 1:
+                self.frame += 1
+            else:
+                self.frame = 0
+            self.image = self.images[self.frame]
+
     def update(self):
         self.move()
+        self.animate()
     
     def distanceToPoint(self, pt):
         x1 = self.rect.center[0]
