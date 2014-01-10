@@ -49,7 +49,7 @@ class Alien():
                     if self.rect.center[1] > other.rect.center[1]:
                         if other.speedy > 0:
                             self.living = False
-    def animate(self):
+    def animateAlien(self):
         if self.waitCount < self.waitMax:
             self.waitCount +=3
         else:
@@ -62,7 +62,7 @@ class Alien():
 
     def update(self):
         self.move()
-        self.animate()
+        self.animateAlien()
     
     def distanceToPoint(self, pt):
         x1 = self.rect.center[0]

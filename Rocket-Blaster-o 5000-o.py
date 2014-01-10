@@ -24,7 +24,9 @@ bgRect = bgImage.get_rect()
 
 aliens = []
 shots = []
-player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
+player = Player(["Resources/Player/Player.png",
+                "Resources/Player/Player2.png",
+                "Resources/Player/Player3.png"],(5,5), (100,40),(100, height/2))
 
 score = Score()
 start = False
@@ -83,11 +85,11 @@ while True:
         
         if len(aliens) < 12:
             if random.randint(0, 10) == 0:
-                skin = [["Resources/Alien/mob1.png"],
+                alienSkin = [["Resources/Alien/mob1.png"],
                         ["Resources/Alien/mob2.png"],
                         ["Resources/Alien/mob3.png", "Resources/Alien/mob3-2.png", "Resources/Alien/mob3-3.png", "Resources/Alien/mob3-4.png"]] 
-                alienSkin = skin[random.randint(0,2)]
-                aliens += [Alien(alienSkin, (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
+                alienSkinApply = alienSkin[random.randint(0,2)]
+                aliens += [Alien(alienSkinApply, (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
             
         
         player.update()
@@ -145,7 +147,9 @@ while True:
                     start = False
                     aliens = []
                     shots = []
-                    player = Player("Resources/Player/Player.png", (5,5), (100, height/2), (100,40))
+                    player = player = Player(["Resources/Player/Player.png",
+                                              "Resources/Player/Player2.png",
+                                              "Resources/Player/Player3.png"], (5,5), (100,40),(100, height/2))
         score.reset()        
         
         screen.blit(bgImage, bgRect)

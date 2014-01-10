@@ -7,8 +7,13 @@ height = 480
 size = width, height
 
 class Player():
-    def __init__(self, image, speed = [2,2], size = [100,40], pos = (0,0)):
-        self.image = pygame.image.load(image)
+    def __init__(self, images, speed = [2,2], size = [100,40], pos = (0,0)):
+        self.images = []
+        for image in images:
+            newimage = pygame.image.load(image)
+            self.images += [newimage]
+        self.frame = 0
+        self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
         self.maxSpeedx = speed[0]
         self.maxSpeedy = speed[1]
@@ -16,6 +21,8 @@ class Player():
         self.speedy = 0 
         self.speed = [self.speedx, self.speedy]
         self.radius = self.rect.width/2
+        self.waitCount = 0
+        self.waitMax = 30
         self.place(pos)
         self.living = True
         
@@ -43,6 +50,7 @@ class Player():
     
     def update(self):
         self.move()
+        self.animatePlayer()
         
     
     def move(self):
@@ -67,6 +75,17 @@ class Player():
                     if self.rect.center[1] > other.rect.center[1]:
                         if other.speedy > 0:
                             self.living = False
+    
+    def animatePlayer(self):
+        if self.waitCount < self.waitMax:
+            self.waitCount +=3
+        else:
+            self.waitCount = 0
+            if self.frame < len(self.images) - 1:
+                self.frame += 1
+            else:
+                self.frame = 0
+            self.image = self.images[self.frame]
     
     def collideWall(self,width,height):
         if self.rect.left < 0:
