@@ -11,7 +11,11 @@ width = 900
 height = 480
 size = width, height
 
+
 pygame.init()
+
+pygame.font.init()
+font = pygame.font.Font(None, 36)
 
 clock = pygame.time.Clock()
 
@@ -112,6 +116,9 @@ while True:
         timeSinceStart = time.time()-st
         score.increase(1)
         score.update()
+        if not player.living:
+            font.render(str(score), 1, (100,200,50))
+            
         
         for alien in aliens:
             if not alien.living:
@@ -148,9 +155,8 @@ while True:
                     shots = []
                     player = player = Player(["Resources/Player/Player.png",
                                               "Resources/Player/Player2.png",
-                                              "Resources/Player/Player3.png"], (5,5), (100,40),(100, height/2))
-        score.reset()        
-        
+                                              "Resources/Player/Player3.png"], (5,5), (100,40),(100, height/2))       
+                    score.reset()
         screen.blit(bgImage, bgRect)
         pygame.display.flip()
         clock.tick(60)
