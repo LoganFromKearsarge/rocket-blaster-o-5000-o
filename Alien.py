@@ -1,11 +1,16 @@
 import pygame, sys, math, random, time
 
 class Alien():
-    def __init__(self, images, speed = [-2,0], size = [100,40], pos = (0,0)):
-        self.images = []
-        for image in images:
-            newimage = pygame.image.load(image)
-            self.images += [newimage]
+    def __init__(self, speed = [-2,0], pos = (0,0)):
+        self.images = [pygame.image.load("Resources/Alien/mob1.png"), 
+                       pygame.image.load("Resources/Alien/mob2-2.png"),
+                       pygame.image.load("Resources/Alien/mob3.png"),
+                       pygame.image.load("Resources/Alien/mob4-2.png"),
+                       pygame.image.load("Resources/Alien/mob5.png"), 
+                       pygame.image.load("Resources/Alien/mob1-2.png") ]
+        self.explosionImages = [pygame.image.load("Resources/Explosion/Explosion1.png"), 
+                       pygame.image.load("Resources/Explosion/Explosion2.png"),
+                       pygame.image.load("Resources/Explosion/Explosion3.png")]
         self.frame = 0
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
@@ -19,6 +24,7 @@ class Alien():
         self.waitCount = 0
         self.waitMax = 30
         self.living = True
+        self.dying = False
         
     def place(self, pos):
         self.rect.center = pos
@@ -57,8 +63,19 @@ class Alien():
             if self.frame < len(self.images) - 1:
                 self.frame += 1
             else:
-                self.frame = 0
+                if not self.dying:
+                    self.frame = 0
+                else:
+                    self.living = False
             self.image = self.images[self.frame]
+            
+    def kill(self):
+        self.images = self.explosionImages
+        self.dying = True
+        self.frame = 0
+        self.waitCount = 0
+        self.speedx = 0
+        self.speedy = 0
 
     def update(self):
         self.move()

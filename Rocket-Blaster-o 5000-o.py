@@ -89,10 +89,7 @@ while True:
         
         if len(aliens) < 24 :
             if random.randint(0, 10) == 0:
-                alienSkin = [["Resources/Alien/mob1.png", "Resources/Alien/mob2-2.png","Resources/Alien/mob3.png", "Resources/Alien/mob4-2.png","Resources/Alien/mob5.png", "Resources/Alien/mob1-2.png" ],
-                            ["Resources/Alien/mob1.png", "Resources/Alien/mob2-2.png","Resources/Alien/mob3.png", "Resources/Alien/mob4-2.png","Resources/Alien/mob5.png", "Resources/Alien/mob1-2.png" ]] 
-                alienSkinApply = alienSkin[random.randint(0,1)]
-                aliens += [Alien(alienSkinApply, (-5, 0), (100, 40), (width, random.randint(20, height-20)))]
+                aliens += [Alien((-5, 0), (width, random.randint(20, height-20)))]
             
         
         player.update()
