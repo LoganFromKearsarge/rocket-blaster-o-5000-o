@@ -2,12 +2,16 @@ import pygame, sys, math, random, time
 
 class Alien():
     def __init__(self, speed = [-2,0], pos = (0,0)):
-        self.images = [pygame.image.load("Resources/Alien/mob1.png"), 
+        self.images = [pygame.image.load("Resources/Alien/mob1.png"),
+                       pygame.image.load("Resources/Alien/mob1-2.png"),
+                       pygame.image.load("Resources/Alien/mob2.png"),
                        pygame.image.load("Resources/Alien/mob2-2.png"),
                        pygame.image.load("Resources/Alien/mob3.png"),
+                       pygame.image.load("Resources/Alien/mob3-2.png"),
+                       pygame.image.load("Resources/Alien/mob4.png"),
                        pygame.image.load("Resources/Alien/mob4-2.png"),
                        pygame.image.load("Resources/Alien/mob5.png"), 
-                       pygame.image.load("Resources/Alien/mob1-2.png") ]
+                       pygame.image.load("Resources/Alien/mob5-2.png"),]
         self.explosionImages = [pygame.image.load("Resources/Explosion/Explosion1.png"), 
                        pygame.image.load("Resources/Explosion/Explosion2.png"),
                        pygame.image.load("Resources/Explosion/Explosion3.png")]
@@ -22,7 +26,7 @@ class Alien():
         self.radius = self.rect.width/2
         self.place(pos)
         self.waitCount = 0
-        self.waitMax = 30
+        self.waitMax = 15
         self.living = True
         self.dying = False
         
@@ -76,6 +80,7 @@ class Alien():
         self.waitCount = 0
         self.speedx = 0
         self.speedy = 0
+        self.waitMax = 5
 
     def update(self):
         self.move()
