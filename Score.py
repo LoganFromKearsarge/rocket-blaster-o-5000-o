@@ -8,14 +8,14 @@ pygame.font.init()
 font = pygame.font.Font(None, 36)
 
 class Score():
-    def __init__(self, value=0, pos = (100,height/8)):
+    def __init__(self, value=0, pos = (12.5,12.5), endpos = (width/2, height/3)):
         self.image = font.render(str(value), 1, (100,200,50))
         self.rect = self.image.get_rect()
         self.value = value
-        self.place = pos
+        self.place(pos)
         self.amount = 0
     
-    def place(self):
+    def place(self, pt):
         self.rect.center = pt
         
     def increase(self, amount):
@@ -28,6 +28,5 @@ class Score():
         self.value = 0
         
     def endScore(self, value):
-        self.place = (width/2, height/3)
         self.image = font.render(str(value), 1, (100,200,50))
         self.rect = self.image.get_rect()
