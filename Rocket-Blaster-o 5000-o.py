@@ -109,12 +109,9 @@ while True:
                 shot.collide(alien)
         
         
-        pygame.time.get_ticks()
-        timeSinceStart = time.time()-st
         score.increase(1)
         score.update()
-        if not player.living:
-            font.render(str(score), 1, (100,200,50))
+        
             
         
         for alien in aliens:
@@ -154,7 +151,9 @@ while True:
                                               "Resources/Player/Player2.png",
                                               "Resources/Player/Player3.png"], (5,5), (100,40),(100, height/2))       
                     score.reset()
+        score.endScore(score.value)
         screen.blit(bgImage, bgRect)
+        screen.blit(score.image, score.rect)
         pygame.display.flip()
         clock.tick(60)
     

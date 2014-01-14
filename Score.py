@@ -26,3 +26,8 @@ class Score():
         
     def reset(self):
         self.value = 0
+        
+    def endScore(self, value):
+        self.place = (width/2, height/3)
+        self.image = font.render(str(value), 1, (100,200,50))
+        self.rect = self.image.get_rect()

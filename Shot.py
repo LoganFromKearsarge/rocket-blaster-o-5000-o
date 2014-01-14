@@ -29,7 +29,7 @@ class Shot():
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
                 if self.radius + other.radius > self.distanceToPoint(other.rect.center):
                     self.living = False
-                    other.living = False
+                    other.kill()
                     
     def collideWall(self, width, height):
         if self.rect.left < 0:
