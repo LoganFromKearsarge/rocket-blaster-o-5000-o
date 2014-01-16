@@ -52,7 +52,7 @@ while True:
 
     st = time.time()
     bgImage = pygame.image.load("Resources/Background/Background.png")
-    
+    score = Score(0,(12.5,12.5))
     while start and player.living:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -146,12 +146,12 @@ while True:
                     start = False
                     aliens = []
                     shots = []
+                    score = Score()
                     player = player = Player(["Resources/Player/Player.png",
                                               "Resources/Player/Player2.png",
                                               "Resources/Player/Player3.png"], (5,5), (100,40),(100, height/2))       
-                    score.reset()
-        
-        score.place((width/2-25, height/3))
+                    
+        score.place((width/2-30, height/3))
         screen.blit(bgImage, bgRect)
         screen.blit(score.image, score.rect)
         pygame.display.flip()

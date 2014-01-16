@@ -12,6 +12,7 @@ class Score():
         self.image = font.render(str(value), 1, (100,200,50))
         self.rect = self.image.get_rect()
         self.value = value
+        self.pos = pos
         self.place(pos)
         self.amount = 0
     
@@ -25,6 +26,7 @@ class Score():
         self.image = font.render(str(self.value), 1, (100,200,50))
         
     def reset(self):
+        self.place(self.pos)
         self.value = 0
 
 
