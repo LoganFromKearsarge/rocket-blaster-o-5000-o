@@ -14,7 +14,10 @@ class Alien():
                        pygame.image.load("Resources/Alien/mob5-2.png"),]
         self.explosionImages = [pygame.image.load("Resources/Explosion/Explosion1.png"), 
                        pygame.image.load("Resources/Explosion/Explosion2.png"),
-                       pygame.image.load("Resources/Explosion/Explosion3.png")]
+                       pygame.image.load("Resources/Explosion/Explosion3.png"),
+                       pygame.image.load("Resources/Explosion/Explosion3.png"),
+                       pygame.image.load("Resources/Explosion/Explosion3.png"),
+                       pygame.image.load("Resources/Explosion/Explosion2.png")]
         self.frame = 0
         self.image = self.images[self.frame]
         self.rect = self.image.get_rect()
