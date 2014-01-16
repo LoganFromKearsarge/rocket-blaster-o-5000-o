@@ -134,7 +134,6 @@ while True:
         clock.tick(60)
     
     bgImage = pygame.image.load("Resources/End_Screen/EndScreen.png")    
-    
     while start and not player.living:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -151,7 +150,8 @@ while True:
                                               "Resources/Player/Player2.png",
                                               "Resources/Player/Player3.png"], (5,5), (100,40),(100, height/2))       
                     score.reset()
-        score.endScore(score.value)
+        
+        score.place((width/2-25, height/3))
         screen.blit(bgImage, bgRect)
         screen.blit(score.image, score.rect)
         pygame.display.flip()
