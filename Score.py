@@ -8,7 +8,7 @@ pygame.font.init()
 font = pygame.font.Font(None, 36)
 
 class Score():
-    def __init__(self, value=0, pos = (12.5,12.5), endpos = (width/2, height/3)):
+    def __init__(self, value=0, pos = (12.5,12.5)):
         self.image = font.render(str(value), 1, (100,200,50))
         self.rect = self.image.get_rect()
         self.value = value
@@ -26,7 +26,5 @@ class Score():
         
     def reset(self):
         self.value = 0
-        
-    def endScore(self, value):
-        self.image = font.render(str(value), 1, (100,200,50))
-        self.rect = self.image.get_rect()
+
+
