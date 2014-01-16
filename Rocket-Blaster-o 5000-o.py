@@ -7,6 +7,10 @@ from Alien import Alien
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
 
+"""High scores:
+Cam: 5727
+Logan: 31376 """
+
 width = 900
 height = 480
 size = width, height
