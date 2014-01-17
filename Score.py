@@ -21,6 +21,9 @@ class Score():
         
     def increase(self, amount):
         self.value += amount
+        
+    def decrease(self, amount):
+        self.value -= amount
     
     def update(self):
         self.image = font.render(str(self.value), 1, (100,200,50))
