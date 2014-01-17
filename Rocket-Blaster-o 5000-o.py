@@ -8,8 +8,8 @@ if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
 
 """High scores:
-Cam: 5727
-Logan: 31376 """
+Cam: 5,727
+Logan: 31,376 """
 
 width = 900
 height = 480
@@ -32,9 +32,9 @@ bgRect = bgImage.get_rect()
 
 aliens = []
 shots = []
-player = Player(["Resources/Player/Player.png",
-                "Resources/Player/Player2.png",
-                "Resources/Player/Player3.png"],(5,5), (100,40),(100, height/2))
+player = Player(["Resources/Player/PlayerF1.png",
+                "Resources/Player/PlayerF2.png",
+                "Resources/Player/PlayerF3.png"],(5,5), (100,40),(100, height/2))
 
 score = Score()
 start = False
