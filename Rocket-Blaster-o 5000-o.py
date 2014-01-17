@@ -110,7 +110,8 @@ while True:
             alien.collideWall(width, height)
             alien.collideAlien(player)
             for shot in shots:
-                shot.collide(alien)
+                if shot.collide(alien):
+                    score.decrease(50)
         
         
         score.increase(1)
@@ -125,7 +126,7 @@ while True:
         for shot in shots:
             if not shot.living:
                 shots.remove(shot)
-        
+            
         screen.fill(bgColor)
         screen.blit(bgImage, bgRect)
         for shot in shots:

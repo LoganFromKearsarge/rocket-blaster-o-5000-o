@@ -30,6 +30,8 @@ class Shot():
                 if self.radius + other.radius > self.distanceToPoint(other.rect.center):
                     self.living = False
                     other.kill()
+                    return True
+        return False
                     
     def collideWall(self, width, height):
         if self.rect.left < 0:
