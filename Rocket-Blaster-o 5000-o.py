@@ -4,6 +4,7 @@ from Player import Player
 from Shot import Shot
 from Score import Score
 from Alien import Alien
+from Background import Background
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
 
@@ -32,9 +33,9 @@ bgRect = bgImage.get_rect()
 
 aliens = []
 shots = []
-player = Player(["Resources/Player/PlayerF1.png",
-                "Resources/Player/PlayerF2.png",
-                "Resources/Player/PlayerF3.png"],(5,5), (100,40),(100, height/2))
+player = Player(["Resources/Player/Player.png",
+                "Resources/Player/Player2.png",
+                "Resources/Player/Player3.png"],(5,5), (100,40),(100, height/2))
 
 score = Score()
 start = False
@@ -55,7 +56,7 @@ while True:
         clock.tick(60)
 
     st = time.time()
-    bgImage = pygame.image.load("Resources/Background/Background.png")
+    bg = Background()
     score = Score(0,(12.5,12.5))
     while start and player.living:
         for event in pygame.event.get():
@@ -126,9 +127,11 @@ while True:
         for shot in shots:
             if not shot.living:
                 shots.remove(shot)
+        
+        bg.update()
             
         screen.fill(bgColor)
-        screen.blit(bgImage, bgRect)
+        screen.blit(bg.image, bg.rect)
         for shot in shots:
             screen.blit(shot.image, shot.rect)
         for alien in aliens:
