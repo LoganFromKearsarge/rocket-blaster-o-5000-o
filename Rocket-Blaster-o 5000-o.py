@@ -9,8 +9,8 @@ if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
 
 """High scores:
-Cam: 5,727
-Logan: 31,376 """
+Cam: 00
+Logan: 7,683 """
 
 width = 900
 height = 480
