@@ -24,6 +24,8 @@ class Player():
         self.waitCount = 0
         self.waitMax = 30
         self.place(pos)
+        self.rolling = "none"
+        self.accelerating = "none"
         self.living = True
         
         
@@ -33,20 +35,28 @@ class Player():
     def direction(self, dir):
         if dir == "up":
             self.speedy = -self.maxSpeedy
+            self.rolling = "up"
         if dir == "stop up":
             self.speedy = 0
+            self.rolling = "none"
         if dir == "down":
             self.speedy = self.maxSpeedy
+            self.rolling = "down"
         if dir == "stop down":
             self.speedy = 0
+            self.rolling = "none"
         if dir == "right":
             self.speedx = self.maxSpeedx
+            self.accelerating = "forward"
         if dir == "stop right":
             self.speedx = 0
+            self.accelerating = "none"
         if dir == "left":
             self.speedx = -self.maxSpeedx
+            self.accelerating = "back"
         if dir == "stop left":
             self.speedx = 0
+            self.accelerating = "none"
     
     def update(self):
         self.move()
@@ -77,6 +87,8 @@ class Player():
                             self.living = False
     
     def animatePlayer(self):
+        if self.rolling == "none":
+            self.images = self.   
         if self.waitCount < self.waitMax:
             self.waitCount +=3
         else:
