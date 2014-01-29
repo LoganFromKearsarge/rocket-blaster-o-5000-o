@@ -16,7 +16,7 @@ class Background():
     def update(self):
         self.move()
         print self.rect.x
-        if self.rect.x <= -1950:
+        if self.rect.x <= -1800:
             print "blam"
             self.reset()
         
