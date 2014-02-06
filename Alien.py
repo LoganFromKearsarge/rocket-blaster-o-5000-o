@@ -2,6 +2,7 @@ import pygame, sys, math, random, time
 
 class Alien():
     def __init__(self, speed = [-2,0], pos = (0,0)):
+    #Loading all the alien animation images, as well as explosion images
         self.images = [pygame.image.load("Resources/Alien/mob1.png"),
                        pygame.image.load("Resources/Alien/mob1-2.png"),
                        pygame.image.load("Resources/Alien/mob2.png"),
@@ -33,18 +34,21 @@ class Alien():
         self.living = True
         self.dying = False
         
+    #set position of alien
     def place(self, pos):
         self.rect.center = pos
         
+    #telling the alien it can move
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         
+    #telling the alien that it can't pass through walls   
     def collideWall(self, width, height):
         if self.rect.right < 0:
             self.living = False
             
-        
+        #Alien Collide, pretty self explanatory
     def collideAlien(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
@@ -62,6 +66,7 @@ class Alien():
                     if self.rect.center[1] > other.rect.center[1]:
                         if other.speedy > 0:
                             self.living = False
+    #Animate function for the alien                        
     def animateAlien(self):
         if self.waitCount < self.waitMax:
             self.waitCount +=3
@@ -75,7 +80,7 @@ class Alien():
                 else:
                     self.living = False
             self.image = self.images[self.frame]
-            
+    #define the kill for alien        
     def kill(self):
         self.images = self.explosionImages
         self.dying = True
@@ -84,11 +89,11 @@ class Alien():
         self.speedx = 0
         self.speedy = 0
         self.waitMax = 5
-
+    #just updating the whole alien
     def update(self):
         self.move()
         self.animateAlien()
-    
+    #complicated math
     def distanceToPoint(self, pt):
         x1 = self.rect.center[0]
         y1 = self.rect.center[1]

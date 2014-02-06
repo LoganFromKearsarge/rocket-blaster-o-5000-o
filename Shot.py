@@ -13,17 +13,17 @@ class Shot():
         self.radius = self.rect.width/2
         self.place(pos)
         self.living = True
-        
+    #telling the shot where to shoot from    
     def place(self, pos):
         self.rect.center = pos
-        
+    #updating the shot    
     def update(self):
         self.move()
-        
+    #telling the shot how to move    
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
-            
+    #telling the shot to collide with pretty much everything        
     def collide(self, other):
         if self.rect.right > other.rect.left and self.rect.left < other.rect.right:
             if self.rect.bottom > other.rect.top and self.rect.top < other.rect.bottom:
@@ -32,7 +32,7 @@ class Shot():
                     other.kill()
                     return True
         return False
-                    
+    #telling the shot to hit the wall                
     def collideWall(self, width, height):
         if self.rect.left < 0:
             self.living = False
@@ -42,8 +42,7 @@ class Shot():
             self.living = False
         if self.rect.bottom > height:
             self.living = False
-        
-                 
+    #complicated math          
     def distanceToPoint(self, pt):
         x1 = self.rect.center[0]
         y1 = self.rect.center[1]
