@@ -8,28 +8,19 @@ from Background import Background
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
 
-"""High scores:
-Cam: 00
-Logan: 7,683 """
-
 width = 900
 height = 480
-size = width, height
-
+size = width, height\
 
 pygame.init()
-
 pygame.font.init()
 font = pygame.font.Font(None, 36)
-
 clock = pygame.time.Clock()
 
 screen = pygame.display.set_mode(size)
 bgColor = r,g,b = 0,0,0
 bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
 bgRect = bgImage.get_rect()
-
-
 
 aliens = []
 shots = []
@@ -41,7 +32,7 @@ score = Score()
 start = False
 while True:
     bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
-    
+    #Create Start Screen
     while not start:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -58,10 +49,12 @@ while True:
     st = time.time()
     bg = Background()
     score = Score(0,(12.5,12.5))
+    #Start the Game
     while start and player.living:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            #Controls for player
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.direction("up")
@@ -91,12 +84,11 @@ while True:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.direction("stop left")             
                     
-        
+        #Amount of aliens allowed on screen
         if len(aliens) < 24 :
             if random.randint(0, 10) == 0:
                 aliens += [Alien((-5, 0), (width, random.randint(20, height-20)))]
             
-        
         player.update()
         player.collideWall(width, height)
         
@@ -106,7 +98,7 @@ while True:
             shot.update()
             shot.collideWall(width, height)
         
-        
+        #Call alien collide
         for alien in aliens:
             alien.collideWall(width, height)
             alien.collideAlien(player)
@@ -114,11 +106,8 @@ while True:
                 if shot.collide(alien):
                     score.decrease(50)
         
-        
         score.increase(1)
         score.update()
-        
-            
         
         for alien in aliens:
             if not alien.living:
@@ -129,7 +118,8 @@ while True:
                 shots.remove(shot)
         
         bg.update()
-            
+        
+        #Blitting each image 
         screen.fill(bgColor)
         screen.blit(bg.image, bg.rect)
         for shot in shots:
@@ -140,7 +130,7 @@ while True:
         screen.blit(score.image, score.rect)
         pygame.display.flip()
         clock.tick(60)
-    
+    #Loading endscreen
     bgImage = pygame.image.load("Resources/End_Screen/EndScreen.png")    
     while start and not player.living:
         for event in pygame.event.get():
