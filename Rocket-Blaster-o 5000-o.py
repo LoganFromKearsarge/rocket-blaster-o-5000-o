@@ -8,28 +8,18 @@ from Background import Background
 if not pygame.font: print 'Warning, fonts disabled'
 if not pygame.mixer: print 'Warning, sound disabled'
 
-"""High scores:
-Cam: 00
-Logan: 7,683 """
-
 width = 900
 height = 480
 size = width, height
 
-
 pygame.init()
-
 pygame.font.init()
 font = pygame.font.Font(None, 36)
-
 clock = pygame.time.Clock()
-
 screen = pygame.display.set_mode(size)
 bgColor = r,g,b = 0,0,0
 bgImage = pygame.image.load("Resources/Start_Screen/StartScreen.png")
 bgRect = bgImage.get_rect()
-
-
 
 aliens = []
 shots = []
@@ -95,7 +85,6 @@ while True:
         if len(aliens) < 24 :
             if random.randint(0, 10) == 0:
                 aliens += [Alien((-5, 0), (width, random.randint(20, height-20)))]
-            
         
         player.update()
         player.collideWall(width, height)
@@ -106,7 +95,6 @@ while True:
             shot.update()
             shot.collideWall(width, height)
         
-        
         for alien in aliens:
             alien.collideWall(width, height)
             alien.collideAlien(player)
@@ -114,11 +102,8 @@ while True:
                 if shot.collide(alien):
                     score.decrease(50)
         
-        
         score.increase(1)
         score.update()
-        
-            
         
         for alien in aliens:
             if not alien.living:
@@ -164,6 +149,3 @@ while True:
         screen.blit(score.image, score.rect)
         pygame.display.flip()
         clock.tick(60)
-    
-            
-            
